@@ -27,7 +27,8 @@ import {
   Check,
   X,
 } from 'lucide-react';
-import { mockProjects, mockDocuments, mockNotifications, mockQuickActions, Project, Document, Notification } from '@/data/mockData';
+import { mockProjects, mockDocuments, mockNotifications, mockQuickActions, mockRevenueData, mockOccupancyData, Project, Document, Notification } from '@/data/mockData';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
 const ClientDashboardPage = () => {
   const [selectedProjectId, setSelectedProjectId] = useState<string>(mockProjects[0]?.id || '');
@@ -262,7 +263,7 @@ const ClientDashboardPage = () => {
 
         {/* Visualizations & Graphs */}
         <Card
-          className="p-6 rounded-xl shadow-lg border-t-4 border-riad-orange-primary bg-white flex flex-col justify-center items-center text-center relative overflow-hidden"
+          className="p-6 rounded-xl shadow-lg border-t-4 border-riad-orange-primary bg-white flex flex-col relative overflow-hidden"
           style={{
             backgroundImage: `url(https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)`, // Pexels image for visualizations
             backgroundSize: 'cover',
@@ -270,18 +271,51 @@ const ClientDashboardPage = () => {
           }}
         >
           <div className="absolute inset-0 bg-white/90"></div> {/* Semi-transparent overlay */}
-          <div className="relative z-10 flex flex-col justify-center items-center text-center">
+          <div className="relative z-10 flex flex-col flex-grow">
             <CardHeader className="pb-4">
               <CardTitle className="text-2xl font-serif font-bold text-riad-charcoal-dark">Visualisations & Graphes</CardTitle>
               <CardDescription className="text-riad-charcoal-dark/70">Évolution financière, performance locative...</CardDescription>
             </CardHeader>
-            <CardContent className="flex-grow flex flex-col justify-center items-center">
-              <LayoutDashboard className="h-24 w-24 text-riad-beige-dark mb-4" />
-              <p className="text-lg text-riad-charcoal-dark/80">
-                Les graphiques interactifs (ex: Chiffre d'affaires, Taux d'occupation) seront disponibles ici.
-                <br />
-                (Intégration future avec des bibliothèques comme Recharts ou Chart.js)
-              </p>
+            <CardContent className="flex-grow flex flex-col gap-8">
+              {/* Revenue Chart */}
+              <div className="h-[250px] w-full">
+                <h3 className="text-xl font-serif font-semibold mb-4 text-riad-charcoal-dark">Chiffre d'affaires (MAD)</h3>
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={mockRevenueData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                    <XAxis dataKey="month" stroke="#333" />
+                    <YAxis stroke="#333" />
+                    <Tooltip
+                      contentStyle={{ backgroundColor: '#fff', border: '1px solid #ccc', borderRadius: '8px' }}
+                      labelStyle={{ color: '#333', fontWeight: 'bold' }}
+                      itemStyle={{ color: '#555' }}
+                      formatter={(value: number) => `${value.toLocaleString('fr-MA')} MAD`}
+                    />
+                    <Legend wrapperStyle={{ paddingTop: '10px' }} />
+                    <Line type="monotone" dataKey="revenue" stroke="#E87928" activeDot={{ r: 8 }} strokeWidth={2} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* Occupancy Rate Chart */}
+              <div className="h-[250px] w-full">
+                <h3 className="text-xl font-serif font-semibold mb-4 text-riad-charcoal-dark">Taux d'Occupation (%)</h3>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={mockOccupancyData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                    <XAxis dataKey="quarter" stroke="#333" />
+                    <YAxis stroke="#333" />
+                    <Tooltip
+                      contentStyle={{ backgroundColor: '#fff', border: '1px solid #ccc', borderRadius: '8px' }}
+                      labelStyle={{ color: '#333', fontWeight: 'bold' }}
+                      itemStyle={{ color: '#555' }}
+                      formatter={(value: number) => `${value}%`}
+                    />
+                    <Legend wrapperStyle={{ paddingTop: '10px' }} />
+                    <Bar dataKey="occupancy" fill="#008080" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
             </CardContent>
           </div>
         </Card>

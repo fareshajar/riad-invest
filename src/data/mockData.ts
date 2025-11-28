@@ -54,6 +54,16 @@ export interface QuickAction {
   action: () => void;
 }
 
+export interface RevenueData {
+  month: string;
+  revenue: number;
+}
+
+export interface OccupancyData {
+  quarter: string;
+  occupancy: number;
+}
+
 export const mockProjects: Project[] = [
   {
     id: 'proj-001',
@@ -158,4 +168,26 @@ export const mockQuickActions: QuickAction[] = [
   { id: 'qa-001', label: 'Télécharger Contrat', icon: Download, action: () => alert('Télécharger Contrat') },
   { id: 'qa-002', label: 'Commenter Avancement', icon: MessageSquare, action: () => alert('Commenter Avancement') },
   { id: 'qa-003', label: 'Valider Devis', icon: CheckCircle, action: () => alert('Valider Devis') },
+];
+
+export const mockRevenueData: RevenueData[] = [
+  { month: 'Jan', revenue: 40000 },
+  { month: 'Fév', revenue: 45000 },
+  { month: 'Mar', revenue: 50000 },
+  { month: 'Avr', revenue: 55000 },
+  { month: 'Mai', revenue: 60000 },
+  { month: 'Juin', revenue: 65000 },
+  { month: 'Juil', revenue: 70000 },
+  { month: 'Août', revenue: 75000 },
+  { month: 'Sep', revenue: 70000 },
+  { month: 'Oct', revenue: 68000 },
+  { month: 'Nov', revenue: 72000 },
+  { month: 'Déc', revenue: 80000 },
+];
+
+export const mockOccupancyData: OccupancyData[] = [
+  { quarter: 'Q1', occupancy: 75 },
+  { quarter: 'Q2', occupancy: 82 },
+  { quarter: 'Q3', occupancy: 90 },
+  { quarter: 'Q4', occupancy: 88 },
 ];

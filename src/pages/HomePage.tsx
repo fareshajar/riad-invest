@@ -13,11 +13,11 @@ const HomePage = () => {
           <p className="text-2xl font-sans max-w-4xl mx-auto mb-10 opacity-90">
             Votre partenaire clé en main pour investir, construire ou rénover, et générer des revenus. Nous agissons, vous pilotez à distance, en toute transparence.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <Button className="bg-riad-teal-accent text-white hover:bg-riad-teal-dark transition-colors rounded-full px-10 py-6 text-xl font-semibold shadow-lg">
+          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 w-full max-w-lg mx-auto"> {/* Added w-full max-w-lg mx-auto for better mobile centering */}
+            <Button className="w-full sm:w-auto bg-riad-teal-accent text-white hover:bg-riad-teal-dark transition-colors rounded-full px-6 py-4 text-lg sm:px-10 sm:py-6 sm:text-xl font-semibold shadow-lg">
               📅 Échangeons sur votre projet
             </Button>
-            <Button variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-riad-orange-primary transition-colors rounded-full px-10 py-6 text-xl font-semibold shadow-lg">
+            <Button variant="outline" className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-riad-orange-primary transition-colors rounded-full px-6 py-4 text-lg sm:px-10 sm:py-6 sm:text-xl font-semibold shadow-lg">
               📘 Télécharger notre Guide de l'Investisseur
             </Button>
           </div>
