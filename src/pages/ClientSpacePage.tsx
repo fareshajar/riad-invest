@@ -31,7 +31,7 @@ const ClientSpacePage = () => {
     <div className="space-y-16 py-12">
       {/* Hero Section */}
       <section
-        className="relative text-center text-white py-32 rounded-3xl shadow-xl overflow-hidden"
+        className="relative text-center text-white py-20 sm:py-32 rounded-3xl shadow-xl overflow-hidden"
         style={{
           backgroundImage: `url(https://images.pexels.com/photos/164005/pexels-photo-164005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)`, // Pexels image
           backgroundSize: 'cover',
@@ -39,9 +39,9 @@ const ClientSpacePage = () => {
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-riad-teal-accent/80 to-riad-teal-light/80"></div> {/* Overlay */}
-        <div className="relative z-10 container mx-auto">
-          <h1 className="text-6xl font-serif font-extrabold mb-6 leading-tight">Votre Riad, Sous Contrôle.</h1>
-          <p className="text-2xl font-sans max-w-4xl mx-auto mb-10 opacity-90">
+        <div className="relative z-10 container mx-auto px-4">
+          <h1 className="text-4xl sm:text-6xl font-serif font-extrabold mb-6 leading-tight">Votre Riad, Sous Contrôle.</h1>
+          <p className="text-lg sm:text-2xl font-sans max-w-4xl mx-auto mb-10 opacity-90">
             La clé de la confiance est la transparence. Votre Espace Client sécurisé est le centre de commande de votre investissement, où que vous soyez.
           </p>
           <Button asChild className="bg-riad-orange-primary text-white hover:bg-riad-orange-dark transition-all duration-300 ease-in-out rounded-full px-10 py-5 text-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1">
@@ -51,11 +51,11 @@ const ClientSpacePage = () => {
       </section>
 
       {/* Features Section */}
-      <section className="container mx-auto">
-        <h2 className="text-5xl font-serif font-bold text-center mb-16 text-riad-charcoal-dark">
+      <section className="container mx-auto px-4">
+        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-center mb-16 text-riad-charcoal-dark">
           Ce que vous y <span className="text-riad-teal-accent">trouvez</span> :
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           <FeatureCard
             icon={<LayoutDashboard className="h-10 w-10 text-riad-orange-primary" />}
             title="Tableau de Bord Centralisé"
@@ -90,20 +90,20 @@ const ClientSpacePage = () => {
       </section>
 
       {/* How It Works Section */}
-      <section className="container mx-auto py-16 bg-riad-beige-light rounded-3xl shadow-inner">
-        <h2 className="text-5xl font-serif font-bold text-center mb-16 text-riad-charcoal-dark">
+      <section className="container mx-auto py-16 bg-riad-beige-light rounded-3xl shadow-inner px-4">
+        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-center mb-16 text-riad-charcoal-dark">
           Comment ça <span className="text-riad-orange-primary">marche</span> ?
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-center">
           {howItWorksSteps.map((step, index) => (
             <div key={index} className="flex flex-col items-center p-6">
               <div className="p-5 rounded-full bg-white shadow-md mb-6">
                 {step.icon}
               </div>
-              <h3 className="text-2xl font-serif font-semibold mb-3 text-riad-charcoal-dark">
+              <h3 className="text-xl sm:text-2xl font-serif font-semibold mb-3 text-riad-charcoal-dark">
                 {step.title}
               </h3>
-              <p className="text-lg text-riad-charcoal-dark/80 font-sans max-w-xs">
+              <p className="text-base sm:text-lg text-riad-charcoal-dark/80 font-sans max-w-xs">
                 {step.description}
               </p>
             </div>
@@ -112,27 +112,47 @@ const ClientSpacePage = () => {
       </section>
 
       {/* Testimonial Section */}
-      <section className="container mx-auto text-center bg-gradient-to-r from-riad-orange-primary to-riad-orange-dark text-white py-20 rounded-3xl shadow-xl">
-        <Quote className="h-16 w-16 text-white mx-auto mb-8 opacity-90" />
-        <blockquote className="text-3xl italic font-serif max-w-4xl mx-auto leading-relaxed">
-          "{testimonial.text}"
-        </blockquote>
-        <p className="text-xl font-sans font-semibold mt-8 opacity-90">
-          - {testimonial.author}
-        </p>
+      <section
+        className="relative container mx-auto text-center text-white py-20 rounded-3xl shadow-xl px-4 overflow-hidden"
+        style={{
+          backgroundImage: `url(https://images.pexels.com/photos/1007427/pexels-photo-1007427.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)`, // Pexels image for testimonial
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-riad-orange-primary/80 to-riad-orange-dark/80"></div> {/* Overlay */}
+        <div className="relative z-10">
+          <Quote className="h-16 w-16 text-white mx-auto mb-8 opacity-90" />
+          <blockquote className="text-xl sm:text-3xl italic font-serif max-w-4xl mx-auto leading-relaxed">
+            "{testimonial.text}"
+          </blockquote>
+          <p className="text-lg sm:text-xl font-sans font-semibold mt-8 opacity-90">
+            - {testimonial.author}
+          </p>
+        </div>
       </section>
 
       {/* Support Section */}
-      <section className="container mx-auto text-center py-12">
-        <h2 className="text-5xl font-serif font-bold mb-8 text-riad-charcoal-dark">
-          Besoin d'aide <span className="text-riad-teal-accent">?</span>
-        </h2>
-        <p className="text-xl font-sans max-w-3xl mx-auto mb-10 text-riad-charcoal-dark/80">
-          Notre équipe dédiée est à votre entière disposition pour répondre à toutes vos questions et vous offrir une assistance personnalisée.
-        </p>
-        <Button className="bg-riad-teal-accent text-white hover:bg-riad-teal-dark transition-all duration-300 ease-in-out rounded-full px-10 py-5 text-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-          Contacter le Support
-        </Button>
+      <section
+        className="relative container mx-auto text-center py-12 px-4 rounded-3xl shadow-xl overflow-hidden"
+        style={{
+          backgroundImage: `url(https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)`, // Pexels image for support
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="absolute inset-0 bg-riad-teal-accent/80"></div> {/* Overlay */}
+        <div className="relative z-10 text-white">
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold mb-8">
+            Besoin d'aide <span className="text-riad-orange-primary">?</span>
+          </h2>
+          <p className="text-lg sm:text-xl font-sans max-w-3xl mx-auto mb-10 opacity-90">
+            Notre équipe dédiée est à votre entière disposition pour répondre à toutes vos questions et vous offrir une assistance personnalisée.
+          </p>
+          <Button className="bg-riad-orange-primary text-white hover:bg-riad-orange-dark transition-all duration-300 ease-in-out rounded-full px-10 py-5 text-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            Contacter le Support
+          </Button>
+        </div>
       </section>
     </div>
   );

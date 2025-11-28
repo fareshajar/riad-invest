@@ -112,41 +112,51 @@ const ClientDashboardPage = () => {
 
       {/* Project Overview */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <Card className="lg:col-span-2 p-6 rounded-xl shadow-lg border-t-4 border-riad-teal-accent bg-white">
-          <CardHeader className="flex flex-row items-center justify-between pb-4">
-            <CardTitle className="text-3xl font-serif font-bold text-riad-charcoal-dark">
-              {selectedProject.name}
-            </CardTitle>
-            <Badge className={`text-sm font-semibold px-3 py-1 rounded-full border ${getStatusColor(selectedProject.status)}`}>
-              {selectedProject.status}
-            </Badge>
-          </CardHeader>
-          <CardContent className="space-y-4 text-riad-charcoal-dark/80">
-            <p className="flex items-center gap-2 text-lg">
-              <MapPin className="h-5 w-5 text-riad-orange-primary" />
-              <span>{selectedProject.location}</span>
-            </p>
-            <p className="flex items-center gap-2 text-lg">
-              <User className="h-5 w-5 text-riad-orange-primary" />
-              <span>Chef de projet: {selectedProject.projectManager}</span>
-            </p>
-            <div className="flex items-center gap-4 text-lg">
-              <CalendarDays className="h-5 w-5 text-riad-orange-primary" />
-              <span>Début: {selectedProject.startDate}</span>
-              <span>Fin prévue: {selectedProject.endDate}</span>
-            </div>
-            {nextMilestone && (
-              <div className="flex items-center gap-2 text-lg text-riad-charcoal-dark">
-                <Clock className="h-5 w-5 text-riad-teal-accent" />
-                <span>Prochaine étape: <b className="font-semibold">{nextMilestone.event}</b> ({nextMilestone.date})</span>
+        <Card
+          className="lg:col-span-2 p-6 rounded-xl shadow-lg border-t-4 border-riad-teal-accent bg-white relative overflow-hidden"
+          style={{
+            backgroundImage: `url(https://images.pexels.com/photos/1388030/pexels-photo-1388030.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)`, // Pexels image for project overview
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="absolute inset-0 bg-white/90"></div> {/* Semi-transparent overlay */}
+          <div className="relative z-10">
+            <CardHeader className="flex flex-row items-center justify-between pb-4">
+              <CardTitle className="text-3xl font-serif font-bold text-riad-charcoal-dark">
+                {selectedProject.name}
+              </CardTitle>
+              <Badge className={`text-sm font-semibold px-3 py-1 rounded-full border ${getStatusColor(selectedProject.status)}`}>
+                {selectedProject.status}
+              </Badge>
+            </CardHeader>
+            <CardContent className="space-y-4 text-riad-charcoal-dark/80">
+              <p className="flex items-center gap-2 text-lg">
+                <MapPin className="h-5 w-5 text-riad-orange-primary" />
+                <span>{selectedProject.location}</span>
+              </p>
+              <p className="flex items-center gap-2 text-lg">
+                <User className="h-5 w-5 text-riad-orange-primary" />
+                <span>Chef de projet: {selectedProject.projectManager}</span>
+              </p>
+              <div className="flex items-center gap-4 text-lg">
+                <CalendarDays className="h-5 w-5 text-riad-orange-primary" />
+                <span>Début: {selectedProject.startDate}</span>
+                <span>Fin prévue: {selectedProject.endDate}</span>
               </div>
-            )}
-            <div>
-              <h3 className="text-xl font-serif font-semibold mb-2 text-riad-charcoal-dark">Avancement</h3>
-              <Progress value={selectedProject.progress} className="h-3 bg-riad-beige-light" indicatorClassName="bg-riad-teal-accent" />
-              <p className="text-right text-sm mt-1">{selectedProject.progress}% Complété</p>
-            </div>
-          </CardContent>
+              {nextMilestone && (
+                <div className="flex items-center gap-2 text-lg text-riad-charcoal-dark">
+                  <Clock className="h-5 w-5 text-riad-teal-accent" />
+                  <span>Prochaine étape: <b className="font-semibold">{nextMilestone.event}</b> ({nextMilestone.date})</span>
+                </div>
+              )}
+              <div>
+                <h3 className="text-xl font-serif font-semibold mb-2 text-riad-charcoal-dark">Avancement</h3>
+                <Progress value={selectedProject.progress} className="h-3 bg-riad-beige-light" indicatorClassName="bg-riad-teal-accent" />
+                <p className="text-right text-sm mt-1">{selectedProject.progress}% Complété</p>
+              </div>
+            </CardContent>
+          </div>
         </Card>
 
         {/* Quick Actions */}
@@ -250,20 +260,30 @@ const ClientDashboardPage = () => {
           </CardContent>
         </Card>
 
-        {/* Placeholder for Graphs/Maps */}
-        <Card className="p-6 rounded-xl shadow-lg border-t-4 border-riad-orange-primary bg-white flex flex-col justify-center items-center text-center">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-2xl font-serif font-bold text-riad-charcoal-dark">Visualisations & Graphes</CardTitle>
-            <CardDescription className="text-riad-charcoal-dark/70">Évolution financière, performance locative...</CardDescription>
-          </CardHeader>
-          <CardContent className="flex-grow flex flex-col justify-center items-center">
-            <LayoutDashboard className="h-24 w-24 text-riad-beige-dark mb-4" />
-            <p className="text-lg text-riad-charcoal-dark/80">
-              Les graphiques interactifs (ex: Chiffre d'affaires, Taux d'occupation) seront disponibles ici.
-              <br />
-              (Intégration future avec des bibliothèques comme Recharts ou Chart.js)
-            </p>
-          </CardContent>
+        {/* Visualizations & Graphs */}
+        <Card
+          className="p-6 rounded-xl shadow-lg border-t-4 border-riad-orange-primary bg-white flex flex-col justify-center items-center text-center relative overflow-hidden"
+          style={{
+            backgroundImage: `url(https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)`, // Pexels image for visualizations
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="absolute inset-0 bg-white/90"></div> {/* Semi-transparent overlay */}
+          <div className="relative z-10 flex flex-col justify-center items-center text-center">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-2xl font-serif font-bold text-riad-charcoal-dark">Visualisations & Graphes</CardTitle>
+              <CardDescription className="text-riad-charcoal-dark/70">Évolution financière, performance locative...</CardDescription>
+            </CardHeader>
+            <CardContent className="flex-grow flex flex-col justify-center items-center">
+              <LayoutDashboard className="h-24 w-24 text-riad-beige-dark mb-4" />
+              <p className="text-lg text-riad-charcoal-dark/80">
+                Les graphiques interactifs (ex: Chiffre d'affaires, Taux d'occupation) seront disponibles ici.
+                <br />
+                (Intégration future avec des bibliothèques comme Recharts ou Chart.js)
+              </p>
+            </CardContent>
+          </div>
         </Card>
       </section>
 
